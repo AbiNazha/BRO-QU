@@ -30,8 +30,11 @@
                     @csrf
                     <div class="form-group row ml-3 mr-3">
                         <label for="TelurTerjual" class="col-sm-3 col-form-label col-form-label-sm">Telur Terjual</label>
-                        <div class="col-sm-9">
-                            <input type="number" name="telur_terjual" value="" class="form-control form-control-sm {{ $errors->has('telur_terjual') ? 'is-invalid' : ''}}" id="TelurTerjual" placeholder="">
+                        <div class="input-group input-group-sm col-sm-9">
+                            <input type="number" min="0" name="telur_terjual" value="" class="form-control form-control-sm {{ $errors->has('telur_terjual') ? 'is-invalid' : ''}}" id="TelurTerjual" placeholder="">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">KG</div>
+                            </div>                          
                              @if ($errors->has('telur_terjual'))
                                 <div class="invalid-feedback">
                                     {{$errors->first('telur_terjual')}}
@@ -41,11 +44,28 @@
                     </div>
                     <div class="form-group row ml-3 mr-3">
                         <label for="TelurRusak" class="col-sm-3 col-form-label col-form-label-sm">Telur Rusak</label>
-                        <div class="col-sm-9">
-                            <input type="number" name="telur_rusak" value="" class="form-control form-control-sm {{ $errors->has('telur_rusak') ? 'is-invalid' : ''}}" id="TelurRusak" placeholder="">
-                             @if ($errors->has('telur_rusak'))
+                        <div class="input-group input-group-sm col-sm-9">
+                            <input type="number" min="0" name="telur_rusak" value="" class="form-control form-control-sm {{ $errors->has('telur_rusak') ? 'is-invalid' : ''}}" id="TelurRusak" placeholder="">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">KG</div>
+                            </div> 
+                            @if ($errors->has('telur_rusak'))
                                 <div class="invalid-feedback">
                                     {{$errors->first('telur_rusak')}}
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group row ml-3 mr-3">
+                        <label for="StokTelur" class="col-sm-3 col-form-label col-form-label-sm">Stok Telur</label>
+                        <div class="input-group input-group-sm col-sm-9">
+                            <input type="number" min="0" name="stok_telur" value="" class="form-control form-control-sm {{ $errors->has('stok_telur') ? 'is-invalid' : ''}}" id="StokTelur" placeholder="">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">KG</div>
+                            </div>  
+                            @if ($errors->has('stok_telur'))
+                                <div class="invalid-feedback">
+                                    {{$errors->first('stok_telur')}}
                                 </div>
                              @endif
                         </div>

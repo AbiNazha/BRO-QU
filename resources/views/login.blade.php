@@ -12,7 +12,7 @@
   </head>
   <body style="background-color: #f7fbfe;">
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
             <img src="{{url('img/LogoBroqu.png')}}" class="mx-auto img-fluid" style="width: 150px;">
         </a>
         <ul class="navbar-nav ml-auto">

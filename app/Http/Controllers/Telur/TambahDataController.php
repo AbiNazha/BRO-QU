@@ -37,19 +37,54 @@ class TambahDataController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'telur_terjual' => 'required',
-            'telur_rusak' => 'required',
-        ]);
+        // $this->validate($request, [
+        //     'telur_terjual' => 'required',
+        //     'telur_rusak' => 'required',
+        //     'stok_telur' => 'required'|'greater_than_field:initial_page',
+        // ]);
 
         $user = Auth::user()->id;
+        $telur = Telur::all();
+        $test = 0;
+        foreach ($telur as $data) {
+            $test += $data->stok_telur - ($data->jmlh_telurjual + $data->jmlh_telurrusak);
+        }
+        if($test == 0 ){
+            $q = $request->telur_terjual + $request->telur_rusak;
+            $this->validate($request, [
+                'telur_terjual' => 'required',
+                'telur_rusak' => 'required',
+                'stok_telur' => 'required|gte:'.(int)$q,
+            ]);
 
-        Telur::create([
-            'id_petugas' => $user,
-            'jmlh_telurjual' => $request->telur_terjual,
-            'jmlh_telurrusak' => $request->telur_rusak,
-        ]);
-            return redirect('telur/tambahdata')->with('message', 'Data Berhasil Ditambahkan');
+            Telur::create([
+                'id_petugas' => $user,
+                'jmlh_telurjual' => $request->telur_terjual,
+                'jmlh_telurrusak' => $request->telur_rusak,
+                'stok_telur' => $request->stok_telur,
+            ]);
+            return redirect('telur')->with('message', 'Data Berhasil Ditambahkan');
+        }elseif($test < 0){
+            return redirect('telur')->with('message', 'EROR');
+
+
+        }elseif($test > 0){
+            $this->validate($request, [
+                'telur_terjual' => 'required',
+                'telur_rusak' => 'required',
+                'stok_telur' => 'required',
+            ]);
+
+            Telur::create([
+                'id_petugas' => $user,
+                'jmlh_telurjual' => $request->telur_terjual,
+                'jmlh_telurrusak' => $request->telur_rusak,
+                'stok_telur' => $request->stok_telur,
+            ]);
+            return redirect('telur')->with('message', 'Data Berhasil Ditambahkan');
+        }
+
+        
     }
 
     /**
@@ -90,6 +125,7 @@ class TambahDataController extends Controller
         $telur->id_petugas = $user;
         $telur->jmlh_telurjual = $request->input('telur_terjual');
         $telur->jmlh_telurrusak = $request->input('telur_rusak');
+        $telur->stok_telur = $request->input('stok_telur');
         $telur->update();
 
         return redirect('telur')->with('message', 'Data berhasil diubah');

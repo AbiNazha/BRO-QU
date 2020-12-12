@@ -12,7 +12,7 @@ class Telur extends Model
      * @var array
      */
     protected $fillable = [
-        'id_petugas', 'jmlh_telurjual', 'jmlh_telurrusak',
+        'id_petugas', 'jmlh_telurjual', 'jmlh_telurrusak', 'stok_telur',
     ];
 
     protected $table = 'datatelur';

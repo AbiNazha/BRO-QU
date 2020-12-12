@@ -51,6 +51,17 @@
                              @endif
                         </div>
                     </div>
+                    <div class="form-group row ml-3 mr-3">
+                        <label for="StokTelur" class="col-sm-3 col-form-label col-form-label-sm">Stok Telur</label>
+                        <div class="col-sm-9">
+                            <input type="number" name="stok_telur" value="{{ $telur->stok_telur}}" class="form-control form-control-sm {{ $errors->has('stok_telur') ? 'is-invalid' : ''}}" id="StokTelur" placeholder="">
+                             @if ($errors->has('stok_telur'))
+                                <div class="invalid-feedback">
+                                    {{$errors->first('stok_telur')}}
+                                </div>
+                             @endif
+                        </div>
+                    </div>
                     <div class="col text-center mt-4 mb-3">
                         <a type="reset" class="justify-content-center btn mb-2 btn-outline-dark mr-2 pr-4 pl-4" href="{{ route('telur')}}">Batal</a>
                         <button type="submit" class="justify-content-center btn mb-2 btn-outline-dark ml-2 pr-3 pl-3">Simpan</button>

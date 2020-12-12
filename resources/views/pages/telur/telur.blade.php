@@ -17,6 +17,30 @@
             <div class="card-title text-center mt-2 mb-4">
                 <h2 class="font-weight-bold ">DATA TELUR</h2>
             </div>
+            <div class="row mb-3">
+              <div class="col-xl-3 col-sm-6 col-12"> 
+                <div class="card ">
+                  <div class="card-content">
+                    <div class="card-body">
+                      <div class="media d-flex">
+                        <div class="align-self-center">
+                          <h4>Sisa Telur</h4>                            
+                        </div>
+                        <div class="media-body text-right">
+                        <h3>
+                            <?php $test = 0; ?>
+                            @foreach ($telur as $d => $data)
+                                <?php $test += $data->stok_telur - ($data->jmlh_telurjual + $data->jmlh_telurrusak); ?>                
+                            @endforeach
+                            {{$test}} <strong class="h4">Kg</strong>
+                        </h3>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             @if (session()->has('message'))
             <div class="alert alert-success" role="alert">
                 {{ session()->get('message')}}
@@ -45,8 +69,9 @@
                       <tr>
                         <th scope="col">No</th>
                         <th scope="col">Tanggal</th>
-                        <th scope="col">Telur Terjual</th>
-                        <th scope="col">Telur Rusak</th>
+                        <th scope="col">Telur Terjual (KG)</th>
+                        <th scope="col">Telur Rusak (KG)</th>
+                        <th scope="col">Stok Telur (KG)</th>
                         @if (Auth::User()->jabatan == "Pengawas" )
                         <th scope="col">Action</th>
                         @endif
@@ -59,6 +84,7 @@
                                 <th scope="col">{{$data->tanggal}}</th>
                                 <th scope="col">{{$data->jmlh_telurjual}}</th>
                                 <th scope="col">{{$data->jmlh_telurrusak}}</th>
+                                <th scope="col">{{$data->stok_telur}}</th>
                             @if (Auth::User()->jabatan == "Pengawas" )
                                 <th scope="col"><a class="text-decoration-none" href="telur/edit/{{$data->id}}" style="color: grey;">Edit</a></th>
                             @endif  

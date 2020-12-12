@@ -21,8 +21,6 @@ class CreateDatapakanTable extends Migration
             $table->integer('jmlh_konsentrat')->lenght(30)->unsigned();
             $table->integer('jmlh_jagung')->lenght(30)->unsigned();
             $table->integer('jmlh_dedek')->lenght(30)->unsigned();
-            $table->integer('jmlh_ayam')->lenght(30)->unsigned();
-            $table->integer('usia_ayam')->lenght(30)->unsigned();
             $table->string('status', 20);
         });
     }

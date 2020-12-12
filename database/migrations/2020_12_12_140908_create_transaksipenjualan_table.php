@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDataayamTable extends Migration
+class CreateTransaksipenjualanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,15 @@ class CreateDataayamTable extends Migration
      */
     public function up()
     {
-        Schema::create('dataayam', function (Blueprint $table) {
+        Schema::create('transaksipenjualan', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_petugas');
             $table->foreign('id_petugas')->references('id')->on('datapetugas');
-            $table->unsignedBigInteger('id_kandang');
-            $table->foreign('id_kandang')->references('id')->on('datakandang');
             $table->date('tanggal')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->integer('jmlh_ayam_aktif')->lenght(30)->unsigned();
-            $table->integer('jmlh_ayam_tdk_aktif')->lenght(30)->unsigned();
-            $table->integer('jmlh_ayam_sakit')->lenght(30)->unsigned();
-            $table->integer('jmlh_ayam_mati')->lenght(30)->unsigned();
+            $table->string('jenis', 20);
+            $table->integer('jumlah')->lenght(30)->unsigned();
+            $table->integer('nominal')->lenght(30)->unsigned();
+            $table->integer('total_penjualan')->lenght(30)->unsigned();
         });
     }
 
@@ -34,6 +32,6 @@ class CreateDataayamTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dataayam');
+        Schema::dropIfExists('transaksipenjualan');
     }
 }

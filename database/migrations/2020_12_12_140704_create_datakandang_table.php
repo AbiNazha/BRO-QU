@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDatatelurTable extends Migration
+class CreateDatakandangTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateDatatelurTable extends Migration
      */
     public function up()
     {
-        Schema::create('datatelur', function (Blueprint $table) {
+        Schema::create('datakandang', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_petugas');
             $table->foreign('id_petugas')->references('id')->on('datapetugas');
-            $table->date('tanggal')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->integer('jmlh_telurjual')->lenght(30)->unsigned();
-            $table->integer('jmlh_telurrusak')->lenght(30)->unsigned();
-            $table->integer('stok_telur')->lenght(30)->unsigned();
+            $table->integer('jmlh_ayam')->lenght(30)->unsigned();
+            $table->integer('usia_ayam')->lenght(30)->unsigned();
         });
     }
 
@@ -31,6 +29,6 @@ class CreateDatatelurTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('datatelur');
+        Schema::dropIfExists('datakandang');
     }
 }
