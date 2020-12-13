@@ -45,11 +45,11 @@ class TambahDataController extends Controller
 
         $user = Auth::user()->id;
         $telur = Telur::all();
-        $test = 0;
+        $sisa = 0;
         foreach ($telur as $data) {
-            $test += $data->stok_telur - ($data->jmlh_telurjual + $data->jmlh_telurrusak);
+            $sisa += $data->stok_telur - ($data->jmlh_telurjual + $data->jmlh_telurrusak);
         }
-        if($test == 0 ){
+        if($sisa == 0 ){
             $q = $request->telur_terjual + $request->telur_rusak;
             $this->validate($request, [
                 'telur_terjual' => 'required',
@@ -64,15 +64,15 @@ class TambahDataController extends Controller
                 'stok_telur' => $request->stok_telur,
             ]);
             return redirect('telur')->with('message', 'Data Berhasil Ditambahkan');
-        }elseif($test < 0){
-            return redirect('telur')->with('message', 'EROR');
+        }elseif($sisa < 0){
+            return redirect('telur/tambahdata')->with('message', 'EROR');
 
-
-        }elseif($test > 0){
+        }elseif($sisa > 0){
+            $q = $request->telur_terjual + $request->telur_rusak - $sisa; 
             $this->validate($request, [
                 'telur_terjual' => 'required',
                 'telur_rusak' => 'required',
-                'stok_telur' => 'required',
+                'stok_telur' => 'required|gte:'.(int)$q,
             ]);
 
             Telur::create([
@@ -120,15 +120,65 @@ class TambahDataController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $telur = Telur::find($id);
         $user = Auth::user()->id;
-        $telur->id_petugas = $user;
-        $telur->jmlh_telurjual = $request->input('telur_terjual');
-        $telur->jmlh_telurrusak = $request->input('telur_rusak');
-        $telur->stok_telur = $request->input('stok_telur');
-        $telur->update();
+        $telur = Telur::find($id);
+        $loop = Telur::all();
+        $sisa = 0;
+        foreach ($loop as $loop) {
+            $sisa += $loop->stok_telur - ($loop->jmlh_telurjual + $loop->jmlh_telurrusak);
+        }
+        if ($sisa == 0) {
+            $q = $request->telur_terjual + $request->telur_rusak;
+            $this->validate($request, [
+                'telur_terjual' => 'required',
+                'telur_rusak' => 'required',
+                'stok_telur' => 'required|gte:'.(int)$q,
+            ]);
 
-        return redirect('telur')->with('message', 'Data berhasil diubah');
+            $telur->id_petugas = $user;
+            $telur->jmlh_telurjual = $request->input('telur_terjual');
+            $telur->jmlh_telurrusak = $request->input('telur_rusak');
+            $telur->stok_telur = $request->input('stok_telur');
+            $telur->update();
+    
+            return redirect('telur')->with('message', 'Data berhasil diubah');
+        } elseif($sisa > 0) {
+            $q = ($request->telur_terjual + $request->telur_rusak )- $request->stok_telur + $sisa; 
+            if ($q <= $sisa) {
+                $this->validate($request, [
+                    'telur_terjual' => 'required',
+                    'telur_rusak' => 'required',
+                    'stok_telur' => 'required',
+                ]);
+    
+                $telur->id_petugas = $user;
+                $telur->jmlh_telurjual = $request->input('telur_terjual');
+                $telur->jmlh_telurrusak = $request->input('telur_rusak');
+                $telur->stok_telur = $request->input('stok_telur');
+                $telur->update();
+            } elseif($q > $sisa) {
+                $j = $request->stok_telur + $q - $sisa;
+                $this->validate($request, [
+                    'telur_terjual' => 'required',
+                    'telur_rusak' => 'required',
+                    'stok_telur' => 'required|gte:'.(int)$j,
+                ]);
+    
+                $telur->id_petugas = $user;
+                $telur->jmlh_telurjual = $request->input('telur_terjual');
+                $telur->jmlh_telurrusak = $request->input('telur_rusak');
+                $telur->stok_telur = $request->input('stok_telur');
+                $telur->update();
+            }
+               
+            return redirect('telur')->with('message', 'Data berhasil diubah');
+
+        } elseif($sisa < 0){
+            return redirect()->back()->with('message', 'EROR');
+        }
+        
+
+
     }
 
     /**

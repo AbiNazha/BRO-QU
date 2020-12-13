@@ -32,7 +32,7 @@
                     <div class="form-group row ml-3 mr-3">
                         <label for="TelurTerjual" class="col-sm-3 col-form-label col-form-label-sm">Telur Terjual</label>
                         <div class="col-sm-9">
-                            <input type="number" name="telur_terjual" value="{{ $telur->jmlh_telurjual}}" class="form-control form-control-sm {{ $errors->has('telur_terjual') ? 'is-invalid' : ''}}" id="TelurTerjual" placeholder="">
+                            <input type="number" name="telur_terjual" value="{{$telur->jmlh_telurjual}}" class="form-control form-control-sm {{ $errors->has('telur_terjual') ? 'is-invalid' : ''}}" id="TelurTerjual" placeholder="">
                              @if ($errors->has('telur_terjual'))
                                 <div class="invalid-feedback">
                                     {{$errors->first('telur_terjual')}}
