@@ -24,7 +24,7 @@
                     <div class="card-body">
                       <div class="media d-flex">
                         <div class="align-self-center">
-                          <h4>Sisa Telur</h4>                            
+                          <h4>Stok Telur</h4>                            
                         </div>
                         <div class="media-body text-right">
                         <h3>
@@ -71,7 +71,7 @@
                         <th scope="col">Tanggal</th>
                         <th scope="col">Telur Terjual (KG)</th>
                         <th scope="col">Telur Rusak (KG)</th>
-                        <th scope="col">Stok Telur (KG)</th>
+                        <th scope="col">Pemasukan Telur (KG)</th>
                         @if (Auth::User()->jabatan == "Pengawas" )
                         <th scope="col">Action</th>
                         @endif
