@@ -17,6 +17,62 @@
             <div class="card-title text-center mt-2 mb-4">
                 <h2 class="font-weight-bold ">DATA STOK PAKAN</h2>
             </div>
+            <div class="row mb-3">
+                <div class="col-xl-3 col-sm-6 col-12"> 
+                  <div class="card shadow">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <div class="media d-flex">
+                          <div class="align-self-center">
+                            <h4>Total Konsentrat</h4>                            
+                          </div>
+                          <div class="media-body text-right">
+                          <h3>
+                            {{$konsentrat}} <strong class="h4">Kg</strong>
+                          </h3>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12"> 
+                    <div class="card shadow">
+                      <div class="card-content">
+                        <div class="card-body">
+                          <div class="media d-flex">
+                            <div class="align-self-center">
+                              <h4>Total Jagung</h4>                            
+                            </div>
+                            <div class="media-body text-right">
+                            <h3>
+                                {{$jagung}} <strong class="h4">Kg</strong>
+                            </h3>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-3 col-sm-6 col-12"> 
+                    <div class="card shadow">
+                      <div class="card-content">
+                        <div class="card-body">
+                          <div class="media d-flex">
+                            <div class="align-self-center">
+                              <h4>Total Dedek</h4>                            
+                            </div>
+                            <div class="media-body text-right">
+                            <h3>
+                                {{$dedek}} <strong class="h4">Kg</strong>
+                            </h3>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
             @if (session()->has('message'))
             <div class="alert alert-success" role="alert">
                 {{ session()->get('message')}}
@@ -45,11 +101,9 @@
                       <tr>
                         <th scope="col">No</th>
                         <th scope="col">Tanggal</th>
-                        <th scope="col">Konsentrat</th>
-                        <th scope="col">Jagung</th>
-                        <th scope="col">Dedek Padi</th>
-                        <th scope="col">Ayam</th>
-                        <th scope="col">Usia Ayam</th>
+                        <th scope="col">Konsentrat (KG)</th>
+                        <th scope="col">Jagung (KG)</th>
+                        <th scope="col">Dedek Padi (KG)</th>
                         <th scope="col">Status</th>
                         @if (Auth::User()->jabatan == "Pengawas" )
                         <th scope="col">Action</th>
@@ -64,8 +118,6 @@
                                 <th scope="col">{{$data->jmlh_konsentrat}}</th>
                                 <th scope="col">{{$data->jmlh_jagung}}</th>
                                 <th scope="col">{{$data->jmlh_dedek}}</th>
-                                <th scope="col">{{$data->jmlh_ayam}}</th>
-                                <th scope="col">{{$data->usia_ayam}}</th>
                                 <th scope="col">{{$data->status}}</th>
                             @if (Auth::User()->jabatan == "Pengawas" )
                                 <th scope="col"><a class="text-decoration-none" href="pakan/edit/{{$data->id}}" style="color: grey;">Edit</a></th>

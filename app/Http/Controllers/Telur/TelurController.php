@@ -17,8 +17,13 @@ class TelurController extends Controller
    public function index()
    {
        $telur = DB::table('datatelur')->get();
-   
-       return view('pages.telur.telur', ['telur' => $telur, 'total' => Telur::all()]);
+
+       $total = 0;
+       foreach ($telur as $d => $data){
+            $total += $data->stok_telur - ($data->jmlh_telurjual + $data->jmlh_telurrusak);
+       }
+
+       return view('pages.telur.telur', ['telur' => $telur, 'total'=> $total]);
 
        return view('pages.telur.telur');
    }

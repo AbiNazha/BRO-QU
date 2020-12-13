@@ -41,8 +41,6 @@ class TambahDataController extends Controller
             'konsentrat' => 'required',
             'jagung' => 'required',
             'dedek' => 'required',
-            'ayam' => 'required',
-            'usia_ayam' => 'required',
             'status' => 'required',
         ]);
 
@@ -53,8 +51,6 @@ class TambahDataController extends Controller
             'jmlh_konsentrat' => $request->konsentrat,
             'jmlh_jagung' => $request->jagung,
             'jmlh_dedek' => $request->dedek,
-            'jmlh_ayam' => $request->ayam,
-            'usia_ayam' => $request->usia_ayam,
             'status' => $request->status,
         ]);
             return redirect('pakan')->with('message', 'Data Berhasil Ditambahkan');
@@ -99,8 +95,6 @@ class TambahDataController extends Controller
         $pakan->jmlh_konsentrat = $request->input('konsentrat');
         $pakan->jmlh_jagung = $request->input('jagung');
         $pakan->jmlh_dedek = $request->input('dedek');
-        $pakan->jmlh_ayam = $request->input('ayam');
-        $pakan->usia_ayam = $request->input('usia_ayam');
         $pakan->status = $request->input('status');
         $pakan->update();
 

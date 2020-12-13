@@ -20,8 +20,9 @@ class CreateDataayamTable extends Migration
             $table->unsignedBigInteger('id_kandang');
             $table->foreign('id_kandang')->references('id')->on('datakandang');
             $table->date('tanggal')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->integer('jmlh_ayam_aktif')->lenght(30)->unsigned();
-            $table->integer('jmlh_ayam_tdk_aktif')->lenght(30)->unsigned();
+            $table->integer('jmlh_ayam_produktif')->lenght(30)->unsigned();
+            $table->integer('jmlh_ayam_belum_produktif')->lenght(30)->unsigned();
+            $table->integer('jmlh_ayam_tidak_produktif')->lenght(30)->unsigned();
             $table->integer('jmlh_ayam_sakit')->lenght(30)->unsigned();
             $table->integer('jmlh_ayam_mati')->lenght(30)->unsigned();
         });

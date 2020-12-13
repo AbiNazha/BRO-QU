@@ -31,9 +31,12 @@
                     @method('PUT')
                     <div class="form-group row ml-3 mr-3">
                         <label for="Konsentrat" class="col-sm-3 col-form-label col-form-label-sm">Konsentrat</label>
-                        <div class="col-sm-9">
+                        <div class="input-group input-group-sm col-sm-9">
                             <input type="number" name="konsentrat" value="{{ $pakan->jmlh_konsentrat}}" class="form-control form-control-sm {{ $errors->has('konsentrat') ? 'is-invalid' : ''}}" id="Konsentrat" placeholder="">
-                             @if ($errors->has('konsentrat'))
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">KG</div>
+                            </div>   
+                            @if ($errors->has('konsentrat'))
                                 <div class="invalid-feedback">
                                     {{$errors->first('konsentrat')}}
                                 </div>
@@ -42,9 +45,12 @@
                     </div>
                     <div class="form-group row ml-3 mr-3">
                         <label for="Jagung" class="col-sm-3 col-form-label col-form-label-sm">Jagung</label>
-                        <div class="col-sm-9">
+                        <div class="input-group input-group-sm col-sm-9">
                             <input type="number" name="jagung" value="{{ $pakan->jmlh_jagung}}" class="form-control form-control-sm {{ $errors->has('jagung') ? 'is-invalid' : ''}}" id="Jagung" placeholder="">
-                             @if ($errors->has('jagung'))
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">KG</div>
+                            </div>   
+                            @if ($errors->has('jagung'))
                                 <div class="invalid-feedback">
                                     {{$errors->first('jagung')}}
                                 </div>
@@ -53,33 +59,14 @@
                     </div>
                     <div class="form-group row ml-3 mr-3">
                         <label for="Dedek" class="col-sm-3 col-form-label col-form-label-sm">Dedek Padi</label>
-                        <div class="col-sm-9">
+                        <div class="input-group input-group-sm col-sm-9">
                             <input type="number" name="dedek" value="{{ $pakan->jmlh_dedek}}" class="form-control form-control-sm {{ $errors->has('dedek') ? 'is-invalid' : ''}}" id="Dedek" placeholder="">
-                             @if ($errors->has('dedek'))
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">KG</div>
+                            </div>   
+                            @if ($errors->has('dedek'))
                                 <div class="invalid-feedback">
                                     {{$errors->first('dedek')}}
-                                </div>
-                             @endif
-                        </div>
-                    </div>
-                    <div class="form-group row ml-3 mr-3">
-                        <label for="Ayam" class="col-sm-3 col-form-label col-form-label-sm">Ayam</label>
-                        <div class="col-sm-9">
-                            <input type="number" name="ayam" value="{{ $pakan->jmlh_ayam}}" class="form-control form-control-sm {{ $errors->has('ayam') ? 'is-invalid' : ''}}" id="Ayam" placeholder="">
-                             @if ($errors->has('ayam'))
-                                <div class="invalid-feedback">
-                                    {{$errors->first('ayam')}}
-                                </div>
-                             @endif
-                        </div>
-                    </div>
-                    <div class="form-group row ml-3 mr-3">
-                        <label for="UsiaAyam" class="col-sm-3 col-form-label col-form-label-sm">Usia Ayam</label>
-                        <div class="col-sm-9">
-                            <input type="number" name="usia_ayam" value="{{ $pakan->usia_ayam}}" class="form-control form-control-sm {{ $errors->has('usia_ayam') ? 'is-invalid' : ''}}" id="UsiaAyam" placeholder="">
-                             @if ($errors->has('usia_ayam'))
-                                <div class="invalid-feedback">
-                                    {{$errors->first('usia_ayam')}}
                                 </div>
                              @endif
                         </div>

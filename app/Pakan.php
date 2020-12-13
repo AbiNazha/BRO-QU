@@ -12,7 +12,7 @@ class Pakan extends Model
      * @var array
      */
     protected $fillable = [
-        'id_petugas', 'jmlh_konsentrat', 'jmlh_jagung', 'jmlh_dedek', 'jmlh_ayam', 'usia_ayam', 'status',
+        'id_petugas', 'jmlh_konsentrat', 'jmlh_jagung', 'jmlh_dedek', 'status',
     ];
 
     protected $table = 'datapakan';

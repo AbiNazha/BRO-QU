@@ -28,11 +28,7 @@
                         </div>
                         <div class="media-body text-right">
                         <h3>
-                            <?php $test = 0; ?>
-                            @foreach ($telur as $d => $data)
-                                <?php $test += $data->stok_telur - ($data->jmlh_telurjual + $data->jmlh_telurrusak); ?>                
-                            @endforeach
-                            {{$test}} <strong class="h4">Kg</strong>
+                            {{$total}} <strong class="h4">Kg</strong>
                         </h3>
                         </div>
                       </div>
