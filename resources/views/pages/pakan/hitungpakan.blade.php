@@ -31,15 +31,19 @@
                     <div class="form-group row ml-3 mr-3">
                         <label for="NomorKandang" class="col-sm-3 col-form-label col-form-label-sm">Nomor Kandang</label>
                         <div class="col-sm-9">
-                            <input type="number" name="nomor_kandang" value="" class="form-control form-control-sm {{ $errors->has('nomor_kandang') ? 'is-invalid' : ''}}" id="NomorKandang" placeholder="">
-                             @if ($errors->has('nomor_kandang'))
+                            <select class="custom-select mr-sm-2 {{ $errors->has('id_kandang') ? 'is-invalid' : ''}}" name="id_kandang" id="NomorKandang">
+                                @foreach ($kandang as $item)
+                                    <option value="{{ $item->id}}">{{ $item->id}} ({{ $item->usia_ayam}} Minggu)</option>
+                                @endforeach
+                            </select>
+                            @if ($errors->has('id_kandang'))
                                 <div class="invalid-feedback">
-                                    {{$errors->first('nomor_kandang')}}
+                                    {{$errors->first('id_kandang')}}
                                 </div>
                              @endif
                         </div>
                     </div>
-                    <div class="form-group row ml-3 mr-3">
+                    {{-- <div class="form-group row ml-3 mr-3">
                         <label for="Usia" class="col-sm-3 col-form-label col-form-label-sm">Usia</label>
                         <div class="col-sm-9">
                             <input type="number" name="usia" value="" class="form-control form-control-sm {{ $errors->has('usia') ? 'is-invalid' : ''}}" id="Usia" placeholder="">
@@ -60,7 +64,7 @@
                                 </div>
                              @endif
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="col text-center mt-4 mb-3">
                         <a type="reset" class="justify-content-center btn mb-2 btn-outline-dark mr-2 pr-4 pl-4" href="{{ route('pakan')}}">Batal</a>
                         <button type="submit" class="justify-content-center btn mb-2 btn-outline-dark ml-2 pr-3 pl-3">Hitung</button>
