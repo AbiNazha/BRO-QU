@@ -38,8 +38,10 @@ class TambahDataController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+
         $this->validate($request, [
+            'id_kandang' => 'required|unique:dataayam,id_kandang',
             'ayam_produktif' => 'required',
             'ayam_tidak_produktif' => 'required',
             'ayam_belum_produktif' => 'required',
@@ -51,7 +53,7 @@ class TambahDataController extends Controller
 
         Ayam::create([
             'id_petugas' => $user,
-            'id_kandang' => $request->no_kandang,
+            'id_kandang' => $request->id_kandang,
             'jmlh_ayam_produktif' => $request->ayam_produktif,
             'jmlh_ayam_belum_produktif' => $request->ayam_belum_produktif,
             'jmlh_ayam_tidak_produktif' => $request->ayam_tidak_produktif,
@@ -95,9 +97,19 @@ class TambahDataController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'id_kandang' => 'required|unique:dataayam,id_kandang,'.$id,
+            'ayam_produktif' => 'required',
+            'ayam_tidak_produktif' => 'required',
+            'ayam_belum_produktif' => 'required',
+            'ayam_sakit' => 'required',
+            'ayam_mati' => 'required',
+        ]);
+
         $ayam = Ayam::find($id);
         $user = Auth::user()->id;
         $ayam->id_petugas = $user;
+        $ayam->id_kandang = $request->input('id_kandang');
         $ayam->jmlh_ayam_produktif = $request->input('ayam_produktif');
         $ayam->jmlh_ayam_belum_produktif = $request->input('ayam_belum_produktif');
         $ayam->jmlh_ayam_tidak_produktif = $request->input('ayam_tidak_produktif');

@@ -12,7 +12,7 @@ class Kandang extends Model
      * @var array
      */
     protected $fillable = [
-         'usia_ayam'
+         'id_petugas','usia_ayam'
     ];
 
     public function ayam(){

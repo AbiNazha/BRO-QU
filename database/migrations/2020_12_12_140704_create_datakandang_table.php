@@ -17,7 +17,6 @@ class CreateDatakandangTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_petugas');
             $table->foreign('id_petugas')->references('id')->on('datapetugas');
-            $table->integer('jmlh_ayam')->lenght(30)->unsigned();
             $table->integer('usia_ayam')->lenght(30)->unsigned();
         });
     }

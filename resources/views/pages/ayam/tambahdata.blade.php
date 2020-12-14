@@ -31,11 +31,16 @@
                     <div class="form-group row ml-3 mr-3">
                         <label for="NoKandang" class="col-sm-3 col-form-label col-form-label-sm">No Kandang</label>
                         <div class="col-sm my-0">
-                            <select class="custom-select mr-sm-2" name="no_kandang" id="NoKandang">
+                            <select class="custom-select mr-sm-2 {{ $errors->has('id_kandang') ? 'is-invalid' : ''}}" name="id_kandang" id="NoKandang">
                                 @foreach ($kandang as $item)
                                     <option value="{{ $item->id}}">{{ $item->id}} ({{ $item->usia_ayam}} Minggu)</option>
                                 @endforeach
                             </select>
+                            @if ($errors->has('id_kandang'))
+                                <div class="invalid-feedback">
+                                    {{$errors->first('id_kandang')}}
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="form-group row ml-3 mr-3">
