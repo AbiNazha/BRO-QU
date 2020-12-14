@@ -31,9 +31,9 @@
                         <li class="nav-item pr-3 border-right">
                             <a class="nav-link" href="{{ route('tambahdata')}}" style="color: grey;">Tambah Data</a>
                         </li>
-                        <li class="nav-item pl-3">
+                        {{-- <li class="nav-item pl-3">
                             <a id="excel" class="nav-link" href="#" style="color: grey;">Unduh</a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
                 <div class="container-fluid">

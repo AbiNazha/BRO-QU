@@ -33,9 +33,9 @@
                             <a class="nav-link" href="{{ route('tambahdatakandang')}}" style="color: grey;">Tambah Data</a>
                         </li>
                         @endif
-                        <li class="nav-item pl-3">
+                        {{-- <li class="nav-item pl-3">
                             <a id="excel" class="nav-link" href="#" style="color: grey;">Unduh</a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
                 <div class="container-fluid">

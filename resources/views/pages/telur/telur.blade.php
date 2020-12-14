@@ -53,9 +53,9 @@
                             <a class="nav-link" href="{{ route('tambahdatatelur')}}" style="color: grey;">Tambah Data</a>
                         </li>
                         @endif
-                        <li class="nav-item pl-3">
+                        {{-- <li class="nav-item pl-3">
                             <a class="nav-link" href="#" style="color: grey;">Unduh</a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
                 <div class="container-fluid">
