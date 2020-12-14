@@ -30,23 +30,44 @@
                     @csrf
                     @method('PUT')
                     <div class="form-group row ml-3 mr-3">
-                        <label for="AyamAktif" class="col-sm-3 col-form-label col-form-label-sm">Ayam Aktif</label>
+                        <label for="NoKandang" class="col-sm-3 col-form-label col-form-label-sm">No Kandang</label>
+                        <div class="col-sm my-0">
+                            <select class="custom-select mr-sm-2" name="no_kandang" id="NoKandang">
+                                @foreach ($kandang as $item)
+                                    <option value="{{ $item->id}}">{{ $item->id}} ({{ $item->usia_ayam}} Minggu)</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row ml-3 mr-3">
+                        <label for="AyamProduktif" class="col-sm-3 col-form-label col-form-label-sm">Ayam Produktif</label>
                         <div class="col-sm-9">
-                            <input type="number" name="ayam_aktif" value="{{ $ayam->jmlh_ayam_aktif}}" class="form-control form-control-sm {{ $errors->has('ayam_aktif') ? 'is-invalid' : ''}}" id="AyamAktif" placeholder="">
-                             @if ($errors->has('ayam_aktif'))
+                            <input type="number" name="ayam_produktif" value="{{ $ayam->jmlh_ayam_produktif}}" class="form-control form-control-sm {{ $errors->has('ayam_produktif') ? 'is-invalid' : ''}}" id="AyamProduktif" placeholder="">
+                             @if ($errors->has('ayam_produktif'))
                                 <div class="invalid-feedback">
-                                    {{$errors->first('ayam_aktif')}}
+                                    {{$errors->first('ayam_produktif')}}
                                 </div>
                              @endif
                         </div>
                     </div>
                     <div class="form-group row ml-3 mr-3">
-                        <label for="AyamTidakAktif" class="col-sm-3 col-form-label col-form-label-sm">Ayam Tidak Aktif</label>
+                        <label for="AyamBelumProduktif" class="col-sm-3 col-form-label col-form-label-sm">Ayam Belum Produktif</label>
                         <div class="col-sm-9">
-                            <input type="number" name="ayam_tidak_aktif" value="{{ $ayam->jmlh_ayam_tdk_aktif}}" class="form-control form-control-sm {{ $errors->has('ayam_tidak_aktif') ? 'is-invalid' : ''}}" id="AyamTidakAktif" placeholder="">
-                             @if ($errors->has('ayam_tidak_aktif'))
+                            <input type="number" name="ayam_belum_produktif" value="{{ $ayam->jmlh_ayam_belum_produktif}}" class="form-control form-control-sm {{ $errors->has('ayam_belum_produktif') ? 'is-invalid' : ''}}" id="AyamBelumProduktif" placeholder="">
+                             @if ($errors->has('ayam_belum_produktif'))
                                 <div class="invalid-feedback">
-                                    {{$errors->first('ayam_tidak_aktif')}}
+                                    {{$errors->first('ayam_belum_produktif')}}
+                                </div>
+                             @endif
+                        </div>
+                    </div>
+                    <div class="form-group row ml-3 mr-3">
+                        <label for="AyamTidakProduktif" class="col-sm-3 col-form-label col-form-label-sm">Ayam Tidak Produktif</label>
+                        <div class="col-sm-9">
+                            <input type="number" name="ayam_tidak_produktif" value="{{ $ayam->jmlh_ayam_tidak_produktif}}" class="form-control form-control-sm {{ $errors->has('ayam_tidak_produktif') ? 'is-invalid' : ''}}" id="AyamTidakProduktif" placeholder="">
+                             @if ($errors->has('ayam_tidak_produktif'))
+                                <div class="invalid-feedback">
+                                    {{$errors->first('ayam_tidak_produktif')}}
                                 </div>
                              @endif
                         </div>

@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Kandang;
 
+use App\Ayam;
 use Illuminate\Http\Request;
-use App\Rules\MatchOldPassword;
-use Illuminate\Support\Facades\Hash;
-use App\User;
+use App\Http\Controllers\Controller;
+use App\Kandang;
+use App\Pakan;
 use Auth;
+use DB;
 
-class EditProfilController extends Controller
+class TambahDataController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +19,7 @@ class EditProfilController extends Controller
      */
     public function index()
     {
-        return view('pages.editprofil')->with('users', Auth::user());
+        return view('pages.kandang.tambahdata');
     }
 
     /**
@@ -38,28 +40,19 @@ class EditProfilController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'password' => ['sometimes', new MatchOldPassword],
-            'password_baru' => ['sometimes'],
-            'konfirmasi_password' => 'sometimes|same:password_baru',
-            'nama' => 'required|max:20',
-            'username' => 'required|max:20|unique:datapetugas,username,'.Auth::id(),
-            'email' => 'required|max:20|unique:datapetugas,email,'.Auth::id(),
-            'alamat' => 'required|max:30',
-            'no_hp' => 'required|max:15',
-            'jabatan' => 'required',
+        $this->validate($request, [
+            'usia_ayam' => 'required|max:20',
         ]);
-        
 
-        $users = User::find(auth()->user()->id);
-        $users->nama_petugas = $request->input('nama');
-        $users->username = $request->input('username');
-        $users->email = $request->input('email');
-        $users->alamat = $request->input('alamat');
-        $users->no_hp = $request->input('no_hp');
-        $users->update(['password'=> Hash::make($request->password_baru)]);
+        $user = Auth::user()->id;
+        // $ayam = Pakan::all();
+        // $jumlah = $ayam->jmlh_konsentrat;
 
-        return redirect('editprofile')->with('message', 'Data berhasil diubah');
+        Kandang::create([
+            'id_petugas' => $user,
+            'usia_ayam' => $request->usia_ayam,
+        ]);
+            return redirect('kandang')->with('message', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -81,9 +74,9 @@ class EditProfilController extends Controller
      */
     public function edit($id)
     {
-        // $users = User::findOrFail($id);
+        $kandang = Kandang::findOrFail($id);
 
-        // return view('pages.editprofil')->with('users', $users);
+        return view('pages.kandang.editdata')->with('kandang', $kandang);
     }
 
     /**
@@ -95,7 +88,13 @@ class EditProfilController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $kandang = Kandang::find($id);
+        $user = Auth::user()->id;
+        $kandang->id_petugas = $user;
+        $kandang->usia_ayam = $request->input('usia_ayam');;
+        $kandang->update();
+
+        return redirect('kandang')->with('message', 'Data berhasil diubah');
     }
 
     /**

@@ -15,7 +15,7 @@
     <div class="row justify-content-center">
         <div class="col-10 m-auto" style="top: 10vh;">
             <div class="card-title text-center mt-2 mb-4">
-                <h2 class="font-weight-bold ">DATA AYAM</h2>
+                <h2 class="font-weight-bold ">DATA KANDANG</h2>
             </div>
             @if (session()->has('message'))
             <div class="alert alert-success" role="alert">
@@ -28,13 +28,11 @@
                         <input id="searchbox" class="form-control mr-sm-2" type="text" placeholder="Pencarian">
                     </ul>
                     <ul class="navbar-nav ml-auto">
-                        @if (Auth::User()->jabatan == "Pengawas" )
                         <li class="nav-item pr-3 border-right">
-                            <a class="nav-link" href="{{ route('tambahdataayam')}}" style="color: grey;">Tambah Data</a>
+                            <a class="nav-link" href="{{ route('tambahdatakandang')}}" style="color: grey;">Tambah Data</a>
                         </li>
-                        @endif
                         <li class="nav-item pl-3">
-                            <a class="nav-link" href="#" style="color: grey;">Unduh</a>
+                            <a id="excel" class="nav-link" href="#" style="color: grey;">Unduh</a>
                         </li>
                     </ul>
                 </div>
@@ -43,35 +41,27 @@
                 <table id="datatable" class="table">
                     <thead class="thead-light">
                       <tr>
-                        <th scope="col">No</th>
                         <th scope="col">No Kandang</th>
+                        <th scope="col">No Data Ayam</th>
                         <th scope="col">Tanggal</th>
-                        <th scope="col">Ayam Belum Produktif</th>
-                        <th scope="col">Ayam Produktif</th>
-                        <th scope="col">Ayam Tidak Profuktif</th>
-                        <th scope="col">Ayam Sakit</th>
-                        <th scope="col">Ayam Mati</th>
-                        <th scope="col">Total Ayam</th>
+                        <th scope="col">Jumlah Ayam</th>
+                        <th scope="col">Usia Ayam</th>
                         @if (Auth::User()->jabatan == "Pengawas" )
                         <th scope="col">Action</th>
                         @endif
                       </tr>
                     </thead>
                     <tbody>
-                        @foreach ($ayam as $d => $data)
+                        @foreach ($kandang as $d => $data)
                             <tr>
                                 <th scope="col">{{$data->id}}</th>
-                                <th scope="col">{{$data->id_kandang}}</th>
-                                <th scope="col">{{$data->tanggal}}</th>
-                                <th scope="col">{{$data->jmlh_ayam_produktif}}</th>
-                                <th scope="col">{{$data->jmlh_ayam_belum_produktif}}</th>
-                                <th scope="col">{{$data->jmlh_ayam_tidak_produktif}}</th>
-                                <th scope="col">{{$data->jmlh_ayam_sakit}}</th>
-                                <th scope="col">{{$data->jmlh_ayam_mati}}</th>
-                                <th scope="col"></th>
-                            @if (Auth::User()->jabatan == "Pengawas" )
-                            <th scope="col"><a class="text-decoration-none" href="ayam/edit/{{$data->id}}" style="color: grey;">Edit</a></th>
-                            @endif
+                                <th scope="col">{{$data->id_ayam}}</th>
+                                <th scope="col">{{$data->tanggal_ayam}}</th>
+                                <th scope="col">{{$data->total}}</th>
+                                <th scope="col">{{$data->usia_ayam}} Minggu</th>
+                                @if (Auth::User()->jabatan == "Pengawas" )
+                                <th scope="col"><a class="text-decoration-none" href="kandang/edit/{{$data->id}}" style="color: grey;">Edit</a></th>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>

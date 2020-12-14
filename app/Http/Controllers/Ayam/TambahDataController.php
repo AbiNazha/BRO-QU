@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Ayam;
 use App\Ayam;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Kandang;
 use Auth;
 
 class TambahDataController extends Controller
@@ -16,7 +17,8 @@ class TambahDataController extends Controller
      */
     public function index()
     {
-        return view('pages.ayam.tambahdata');
+        $kandang = Kandang::all();
+        return view('pages.ayam.tambahdata', compact('kandang'));
     }
 
     /**
@@ -38,8 +40,9 @@ class TambahDataController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'ayam_aktif' => 'required',
-            'ayam_tidak_aktif' => 'required',
+            'ayam_produktif' => 'required',
+            'ayam_tidak_produktif' => 'required',
+            'ayam_belum_produktif' => 'required',
             'ayam_sakit' => 'required',
             'ayam_mati' => 'required',
         ]);
@@ -48,10 +51,12 @@ class TambahDataController extends Controller
 
         Ayam::create([
             'id_petugas' => $user,
-            'jmlh_ayam_aktif' => $request->ayam_aktif,
-            'jmlh_ayam_tdk_aktif' => $request->ayam_tidak_aktif,
+            'id_kandang' => $request->no_kandang,
+            'jmlh_ayam_produktif' => $request->ayam_produktif,
+            'jmlh_ayam_belum_produktif' => $request->ayam_belum_produktif,
+            'jmlh_ayam_tidak_produktif' => $request->ayam_tidak_produktif,
             'jmlh_ayam_sakit' => $request->ayam_sakit,
-            'jmlh_ayam_mati' => $request->ayam_mati,
+            'jmlh_ayam_mati'=> $request->ayam_mati,
         ]);
             return redirect('ayam')->with('message', 'Data Berhasil Ditambahkan');
     }
@@ -76,8 +81,9 @@ class TambahDataController extends Controller
     public function edit($id)
     {
         $ayam = Ayam::findOrFail($id);
+        $kandang = Kandang::all();
 
-        return view('pages.ayam.editdata')->with('ayam', $ayam);
+        return view('pages.ayam.editdata', compact('kandang'))->with('ayam', $ayam);
     }
 
     /**
@@ -92,8 +98,9 @@ class TambahDataController extends Controller
         $ayam = Ayam::find($id);
         $user = Auth::user()->id;
         $ayam->id_petugas = $user;
-        $ayam->jmlh_ayam_aktif = $request->input('ayam_aktif');
-        $ayam->jmlh_ayam_tdk_aktif = $request->input('ayam_tidak_aktif');
+        $ayam->jmlh_ayam_produktif = $request->input('ayam_produktif');
+        $ayam->jmlh_ayam_belum_produktif = $request->input('ayam_belum_produktif');
+        $ayam->jmlh_ayam_tidak_produktif = $request->input('ayam_tidak_produktif');
         $ayam->jmlh_ayam_sakit = $request->input('ayam_sakit');
         $ayam->jmlh_ayam_mati = $request->input('ayam_mati');
         $ayam->update();
