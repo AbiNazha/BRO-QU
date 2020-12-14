@@ -15,7 +15,14 @@ class CreateDatakasTable extends Migration
     {
         Schema::create('datakas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
+            $table->unsignedBigInteger('id_petugas');
+            $table->foreign('id_petugas')->references('id')->on('datapetugas');
+            $table->date('tanggal')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->biginteger('total_pemasukan')->lenght(50)->unsigned();
+            $table->string('bukti');
+            $table->biginteger('nominal')->lenght(50)->unsigned();
+            $table->string('keterangan', 50);
+            $table->biginteger('saldo')->lenght(50)->unsigned();
         });
     }
 

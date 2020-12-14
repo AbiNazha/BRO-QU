@@ -26,7 +26,7 @@ class HitungPakanController extends Controller
             $usia = $paka->usia_ayam;
         }
         foreach ($ayam as $ayams) {
-            $total = $ayams->jmlh_ayam_produktif + $ayams->jmlh_ayam_belum_produktif + $ayams->jmlh_ayam_tidak_produktif + $ayams->jmlh_ayam_sakit;
+            $total = $ayams->jmlh_ayam_produktif + $ayams->jmlh_ayam_belum_produktif + $ayams->jmlh_ayam_tidak_produktif + $ayams->jmlh_ayam_sakit - $ayams->jmlh_ayam_mati;
         }
 
         $jumlah = 0;

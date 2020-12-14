@@ -15,7 +15,7 @@
     <div class="row justify-content-center">
         <div class="col-10 m-auto" style="top: 10vh;">
             <div class="card-title text-center mt-2 mb-4">
-                <h2 class="font-weight-bold ">DATA PETUGAS</h2>
+                <h2 class="font-weight-bold ">DATA TRANSAKSI</h2>
             </div>
             @if (session()->has('message'))
             <div class="alert alert-success" role="alert">
@@ -29,7 +29,7 @@
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item pr-3 border-right">
-                            <a class="nav-link" href="{{ route('tambahdata')}}" style="color: grey;">Tambah Data</a>
+                            <a class="nav-link" href="{{ route('tambahdatatransaksi')}}" style="color: grey;">Tambah Data</a>
                         </li>
                         {{-- <li class="nav-item pl-3">
                             <a class="nav-link" href="#" style="color: grey;">Unduh</a>
@@ -42,24 +42,23 @@
                     <thead class="thead-light">
                       <tr>
                         <th scope="col">No</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Username</th>
-                        <th scope="col">Alamat</th>
-                        <th scope="col">No Hp</th>
-                        <th scope="col">Jabatan</th>
-                        <th scope="col"></th>
+                        <th scope="col">Tanggal</th>
+                        <th scope="col">Jenis</th>
+                        <th scope="col">Jumlah</th>
+                        <th scope="col">Harga Satuan</th>
+                        <th scope="col">Total Penjualan</th>
                       </tr>
                     </thead>
                     <tbody>
-                        @foreach ($petugas as $d => $data)
+                        @foreach ($transaksi as $d => $data)
                             <tr>
                                 <th scope="col">{{$data->id}}</th>
-                                <th scope="col">{{$data->nama_petugas}}</th>
-                                <th scope="col">{{$data->username}}</th>
-                                <th scope="col">{{$data->alamat}}</th>
-                                <th scope="col">{{$data->no_hp}}</th>
-                                <th scope="col">{{$data->jabatan}}</th>
-                            <th scope="col"><a class="text-decoration-none" href="petugas/edit/{{$data->id}}" style="color: grey;">Edit</a></th>
+                                <th scope="col">{{$data->tanggal}}</th>
+                                <th scope="col">{{$data->jenis}}</th>
+                                <th scope="col">{{$data->jumlah}}</th>
+                                <th scope="col">Rp {{$data->nominal}}</th>
+                                <th scope="col">Rp {{$data->total_penjualan}}</th>
+                            {{-- <th scope="col"><a class="text-decoration-none" href="transaksi/edit/{{$data->id}}" style="color: grey;">Edit</a></th> --}}
                             </tr>
                         @endforeach
                     </tbody>

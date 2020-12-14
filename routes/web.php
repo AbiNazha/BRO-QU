@@ -64,6 +64,11 @@ Route::group(['middleware' => ['auth', 'cekjabatan:Pengawas']], function () {
     Route::put('kandang/edit/data-update/{id}', 'Kandang\TambahDataController@update');
 });
 
+Route::group(['middleware' => ['auth', 'cekjabatan:Pengelola']], function () {
+    Route::get('transaksi/tambahdata', 'Transaksi\TambahDataController@index')->name('tambahdatatransaksi');
+    Route::post('transaksi/tambahdata', 'Transaksi\TambahDataController@store')->name('postdatatransaksi');
+});
+
 Route::group(['middleware' => ['auth', 'cekjabatan:Pemilik,Pengelola']], function () {
     Route::get('transaksi', 'Transaksi\TransaksiController@index')->name('transaksi');
 });

@@ -16,9 +16,9 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        $petugas = DB::table('datapetugas')->get();
+        $transaksi = DB::table('transaksipenjualan')->get();
     
-        return view('pages.transaksi.transaksi', ['petugas' => $petugas]);
+        return view('pages.transaksi.transaksi', ['transaksi' => $transaksi]);
 
         return view('pages.transaksi.transaksi');
     }
