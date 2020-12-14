@@ -60,6 +60,7 @@ class TambahDataController extends Controller
             'jmlh_ayam_sakit' => $request->ayam_sakit,
             'jmlh_ayam_mati'=> $request->ayam_mati,
         ]);
+
             return redirect('ayam')->with('message', 'Data Berhasil Ditambahkan');
     }
 

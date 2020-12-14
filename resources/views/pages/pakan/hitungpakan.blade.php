@@ -26,7 +26,7 @@
                         {{ session()->get('message')}}
                     </div>
                 @endif
-                <form method="POST" action="{{ route('postdatapakan')}}">
+                <form method="POST" action="{{ route('posthitungpakan')}}">
                     @csrf
                     <div class="form-group row ml-3 mr-3">
                         <label for="NomorKandang" class="col-sm-3 col-form-label col-form-label-sm">Nomor Kandang</label>
@@ -42,19 +42,9 @@
                                 </div>
                              @endif
                         </div>
+                        <h5></h5>
                     </div>
                     {{-- <div class="form-group row ml-3 mr-3">
-                        <label for="Usia" class="col-sm-3 col-form-label col-form-label-sm">Usia</label>
-                        <div class="col-sm-9">
-                            <input type="number" name="usia" value="" class="form-control form-control-sm {{ $errors->has('usia') ? 'is-invalid' : ''}}" id="Usia" placeholder="">
-                             @if ($errors->has('usia'))
-                                <div class="invalid-feedback">
-                                    {{$errors->first('usia')}}
-                                </div>
-                             @endif
-                        </div>
-                    </div>
-                    <div class="form-group row ml-3 mr-3">
                         <label for="JumlahAyam" class="col-sm-3 col-form-label col-form-label-sm">Jumlah Ayam</label>
                         <div class="col-sm-9">
                             <input type="number" name="jumlah_ayam" value="" class="form-control form-control-sm {{ $errors->has('jumlah_ayam') ? 'is-invalid' : ''}}" id="JumlahAyam" placeholder="">
@@ -71,6 +61,64 @@
                     </div>
                 </form>
             </div>
+            @if(Session::has('dedek'))
+            <div class="row mb-3 mt-3">
+                <div class="col-4"> 
+                  <div class="card ">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <div class="media d-flex">
+                          <div class="align-self-center">
+                            <h7>
+                                <strong>Dedek</strong>
+                            </h7>                            
+                          </div>
+                          <div class="media-body text-right">
+                          <strong class="h5">{{ Session::get('dedek')}} Kg</strong>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4"> 
+                    <div class="card ">
+                      <div class="card-content">
+                        <div class="card-body">
+                          <div class="media d-flex">
+                            <div class="align-self-center">
+                              <h7>
+                                  <strong>Konsentrat</strong>
+                              </h7>                            
+                            </div>
+                            <div class="media-body text-right">
+                                <strong class="h5">{{ Session::get('konsentrat')}} Kg</strong>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-4"> 
+                    <div class="card ">
+                      <div class="card-content">
+                        <div class="card-body">
+                          <div class="media d-flex">
+                            <div class="align-self-center">
+                              <h7>
+                                  <strong>Jagung</strong>
+                              </h7>                            
+                            </div>
+                            <div class="media-body text-right">
+                                <strong class="h5">{{ Session::get('jagung')}} Kg</strong>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              @endif
         </div>
     </div>
 </div>

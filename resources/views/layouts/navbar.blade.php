@@ -77,7 +77,7 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{ route('pakan')}}">Stok Pakan</a>
-                <a class="dropdown-item" href="/hitung-pakan">Hitung Pakan</a>
+                <a class="dropdown-item" href="{{ route('hitungpakan')}}">Hitung Pakan</a>
               </div>
             </li>
             <li class="nav-item mr-3">

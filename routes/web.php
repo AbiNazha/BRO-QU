@@ -41,9 +41,8 @@ Route::group(['middleware' => ['auth', 'cekjabatan:Pengawas']], function () {
     Route::get('ayam/edit/{id}', 'Ayam\TambahDataController@edit');
     Route::put('ayam/edit/data-update/{id}', 'Ayam\TambahDataController@update');
 
-    Route::get('/hitung-pakan', function () {
-        return view('pages.pakan.hitungpakan');
-    });
+    Route::get('/hitung-pakan', 'Pakan\HitungPakanController@index')->name('hitungpakan');
+    Route::post('/hitung-pakan', 'Pakan\HitungPakanController@hitungpakan')->name('posthitungpakan');
 
     Route::get('pakan/tambahdata', 'Pakan\TambahDataController@index')->name('tambahdatapakan');
     Route::post('pakan/tambahdata', 'Pakan\TambahDataController@store')->name('postdatapakan');

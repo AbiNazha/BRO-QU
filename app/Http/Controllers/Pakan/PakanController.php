@@ -48,4 +48,5 @@ class PakanController extends Controller
 
         return view('pages.pakan.pakan');
     }
+
 }

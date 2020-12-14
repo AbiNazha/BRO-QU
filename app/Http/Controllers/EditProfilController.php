@@ -39,25 +39,26 @@ class EditProfilController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'password' => ['sometimes', new MatchOldPassword],
-            'password_baru' => ['sometimes'],
+            'password' => $request->password_baru != null ? new MatchOldPassword: '',
+            'password_baru' => 'sometimes',
             'konfirmasi_password' => 'sometimes|same:password_baru',
             'nama' => 'required|max:20',
             'username' => 'required|max:20|unique:datapetugas,username,'.Auth::id(),
             'email' => 'required|max:20|unique:datapetugas,email,'.Auth::id(),
             'alamat' => 'required|max:30',
             'no_hp' => 'required|max:15',
-            'jabatan' => 'required',
         ]);
         
 
         $users = User::find(auth()->user()->id);
+        $pass = Auth::user()->getAuthPassword();
         $users->nama_petugas = $request->input('nama');
         $users->username = $request->input('username');
         $users->email = $request->input('email');
         $users->alamat = $request->input('alamat');
         $users->no_hp = $request->input('no_hp');
-        $users->update(['password'=> Hash::make($request->password_baru)]);
+        $users->password = $request->password_baru != null ? Hash::make($request->input('password_baru')) : $pass;
+        $users->update();
 
         return redirect('editprofile')->with('message', 'Data berhasil diubah');
     }
