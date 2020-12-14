@@ -43,7 +43,7 @@
                 <a class="nav-link" href="{{ route('ayam')}}">Ayam</a>
             </li>
             <li class="nav-item mr-3">
-                <a class="nav-link" href="#">Kandang</a>
+                <a class="nav-link" href="{{ route('kandang')}}">Kandang</a>
             </li>
             <li class="nav-item mr-3">
                 <a class="nav-link" href="{{ route('pakan')}}">Pakan</a>
@@ -69,7 +69,7 @@
               <a class="nav-link" href="{{ route('ayam')}}">Ayam</a>
             </li>
             <li class="nav-item mr-3">
-              <a class="nav-link" href="#">Kandang</a>
+              <a class="nav-link" href="{{ route('kandang')}}">Kandang</a>
             </li>
             <li class="nav-item dropdown mr-3">
               <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

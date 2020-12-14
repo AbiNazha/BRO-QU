@@ -57,6 +57,12 @@ Route::group(['middleware' => ['auth', 'cekjabatan:Pengawas']], function () {
 
     Route::get('telur/edit/{id}', 'Telur\TambahDataController@edit');
     Route::put('telur/edit/data-update/{id}', 'Telur\TambahDataController@update');
+
+    Route::get('kandang/tambahdata', 'Kandang\TambahDataController@index')->name('tambahdatakandang');
+    Route::post('kandang/tambahdata', 'Kandang\TambahDataController@store')->name('postdatakandang');
+
+    Route::get('kandang/edit/{id}', 'Kandang\TambahDataController@edit');
+    Route::put('kandang/edit/data-update/{id}', 'Kandang\TambahDataController@update');
 });
 
 Route::group(['middleware' => ['auth', 'cekjabatan:Pemilik,Pengelola']], function () {
@@ -70,6 +76,7 @@ Route::group(['middleware' => ['auth', 'cekjabatan:Pemilik,Pengawas']], function
 Route::group(['middleware' => ['auth', 'cekjabatan:Pemilik,Pengelola,Pengawas']], function () {
     Route::get('telur', 'Telur\TelurController@index')->name('telur');
     Route::get('ayam', 'Ayam\AyamController@index')->name('ayam');
+    Route::get('kandang', 'Kandang\KandangController@index')->name('kandang');
 
     Route::get('editprofile', 'EditProfilController@index')->name('editprofile');
     Route::post('editprofile', 'EditProfilController@store')->name('post.editprofile');

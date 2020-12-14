@@ -40,7 +40,7 @@ class TambahDataController extends Controller
         $this->validate($request, [
             'nama' => 'required|max:20',
             'username' => 'required|max:20|unique:datapetugas',
-            'email' => 'required|max:20|unique:datapetugas',
+            'email' => 'required|unique:datapetugas',
             'alamat' => 'required|max:30',
             'no_hp' => 'required|max:15',
             'jabatan' => 'required',
@@ -92,6 +92,16 @@ class TambahDataController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
+        $this->validate($request, [
+            'nama' => 'required|max:20',
+            'username' => 'required|max:20|unique:datapetugas,username,'.$id,
+            'email' => 'required|max:20|unique:datapetugas,email,'.$id,
+            'alamat' => 'required|max:30',
+            'no_hp' => 'required|max:15',
+            'jabatan' => 'required',
+        ]);
+
         $users = User::find($id);
         $users->nama_petugas = $request->input('nama');
         $users->username = $request->input('username');

@@ -75,12 +75,12 @@
                         <label for="Status" class="col-sm-3 col-form-label col-form-label-sm">Status</label>
                         <div class="col-sm my-0">
                             <select class="custom-select mr-sm-2" name="status" id="Status">
-                                @if ($pakan->status == "Masuk")
-                                    <option selected value="Masuk">Masuk</option>
-                                    <option value="Keluar">Keluar</option>
+                                @if ($pakan->status == "In")
+                                    <option selected value="In">In</option>
+                                    <option value="Out">Out</option>
                                 @else
-                                    <option value="Masuk">Masuk</option>
-                                    <option selected value="Keluar">Keluar</option>
+                                    <option value="In">In</option>
+                                    <option selected value="Out">Out</option>
                                 @endif
                             </select>
                         </div>
