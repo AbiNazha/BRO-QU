@@ -69,7 +69,7 @@
                                 <th scope="col">{{$data->jmlh_ayam_sakit}}</th>
                                 <th scope="col">{{$data->jmlh_ayam_mati}}</th>
                                 <th scope="col">
-                                    <?php $total = $data->jmlh_ayam_produktif + $data->jmlh_ayam_belum_produktif + $data->jmlh_ayam_tidak_produktif + $data->jmlh_ayam_sakit - $data->jmlh_ayam_mati ?>
+                                    <?php $total = $data->jmlh_ayam_produktif + $data->jmlh_ayam_belum_produktif + $data->jmlh_ayam_tidak_produktif + $data->jmlh_ayam_sakit ?>
                                     {{$total}}
                                 </th>
                             @if (Auth::User()->jabatan == "Pengawas" )
