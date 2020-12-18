@@ -45,6 +45,7 @@
                         <th scope="col">Tanggal</th>
                         <th scope="col">Nominal</th>
                         <th scope="col">Keterangan</th>
+                        <th scope="col">Status</th>
                         @if(Auth::user()->jabatan == 'Pemilik')
                         <th scope="col">Action</th>
                         @endif
@@ -57,6 +58,7 @@
                                 <th scope="col">{{$data->tanggal}}</th>
                                 <th scope="col">{{$data->nominal}}</th>
                                 <th scope="col">{{$data->keterangan}}</th>
+                                <th scope="col">{{$data->status}}</th>
                             <th scope="col"><a class="text-decoration-none" href="pengeluaran/edit/{{$data->id}}" style="color: grey;">Edit</a></th>
                             </tr>
                         @endforeach
