@@ -22,7 +22,7 @@ class CreateDatakasTable extends Migration
             $table->string('bukti');
             $table->biginteger('nominal')->lenght(50)->unsigned();
             $table->string('keterangan', 50);
-            $table->biginteger('saldo')->lenght(50)->unsigned();
+            $table->string('status', 50);
         });
     }
 

@@ -59,9 +59,9 @@
                 Kas
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Pemasukan</a>
-                <a class="dropdown-item" href="#">Pengeluaran</a>
-                <a class="dropdown-item" href="#">Saldo</a>
+                <a class="dropdown-item" href="{{ route('pemasukan')}}">Pemasukan</a>
+                <a class="dropdown-item" href="{{ route('pengeluaran')}}">Pengeluaran</a>
+                <a class="dropdown-item" href="{{ route('saldo')}}">Saldo</a>
               </div>
             </li>
             @elseif (Auth::User()->jabatan == "Pengawas" )
@@ -98,9 +98,9 @@
                 Kas
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-               <a class="dropdown-item" href="#">Pemasukan</a>
-                <a class="dropdown-item" href="#">Pengeluaran</a>
-               <a class="dropdown-item" href="#">Saldo</a>
+                <a class="dropdown-item" href="{{ route('pemasukan')}}">Pemasukan</a>
+                <a class="dropdown-item" href="{{ route('pengeluaran')}}">Pengeluaran</a>
+                <a class="dropdown-item" href="{{ route('saldo')}}">Saldo</a>
               </div>
             </li>
             @endif

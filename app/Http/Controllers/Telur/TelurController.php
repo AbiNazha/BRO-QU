@@ -24,7 +24,5 @@ class TelurController extends Controller
        }
 
        return view('pages.telur.telur', ['telur' => $telur, 'total'=> $total]);
-
-       return view('pages.telur.telur');
    }
 }

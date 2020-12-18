@@ -71,6 +71,15 @@ Route::group(['middleware' => ['auth', 'cekjabatan:Pengelola']], function () {
 
 Route::group(['middleware' => ['auth', 'cekjabatan:Pemilik,Pengelola']], function () {
     Route::get('transaksi', 'Transaksi\TransaksiController@index')->name('transaksi');
+    Route::get('saldo', 'Kas\KasController@index')->name('saldo');
+
+    Route::get('pemasukan', 'Kas\KasController@pemasukan')->name('pemasukan');
+    Route::get('pemasukan/tambahdata', 'Kas\TambahDataPemasukanController@index')->name('tambahdatapemasukan');
+    Route::post('pemasukan/tambahdata', 'Kas\TambahDataPemasukanController@store')->name('postdatapemasukan');
+
+    Route::get('pengeluaran', 'Kas\KasController@pengeluaran')->name('pengeluaran');
+    Route::get('pengeluaran/tambahdata', 'Kas\TambahDataPengeluaranController@index')->name('tambahdatapengeluaran');
+    Route::post('pengeluaran/tambahdata', 'Kas\TambahDataPengeluaranController@store')->name('postdatapengeluaran');
 });
 
 Route::group(['middleware' => ['auth', 'cekjabatan:Pemilik,Pengawas']], function () {

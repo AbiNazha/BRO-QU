@@ -42,11 +42,11 @@ class TambahDataController extends Controller
 
         $this->validate($request, [
             'id_kandang' => 'required|unique:dataayam,id_kandang',
-            'ayam_produktif' => 'required',
-            'ayam_tidak_produktif' => 'required',
-            'ayam_belum_produktif' => 'required',
-            'ayam_sakit' => 'required',
-            'ayam_mati' => 'required',
+            'ayam_produktif' => 'required|min:0|gte:0',
+            'ayam_tidak_produktif' => 'required|min:0|gte:0',
+            'ayam_belum_produktif' => 'required|min:0|gte:0',
+            'ayam_sakit' => 'required|min:0|gte:0',
+            'ayam_mati' => 'required|min:0|gte:0',
         ]);
 
         $user = Auth::user()->id;
@@ -100,11 +100,11 @@ class TambahDataController extends Controller
     {
         $this->validate($request, [
             'id_kandang' => 'required|unique:dataayam,id_kandang,'.$id,
-            'ayam_produktif' => 'required',
-            'ayam_tidak_produktif' => 'required',
-            'ayam_belum_produktif' => 'required',
-            'ayam_sakit' => 'required',
-            'ayam_mati' => 'required',
+            'ayam_produktif' => 'required|min:0|gte:0',
+            'ayam_tidak_produktif' => 'required|min:0|gte:0',
+            'ayam_belum_produktif' => 'required|min:0|gte:0',
+            'ayam_sakit' => 'required|min:0|gte:0',
+            'ayam_mati' => 'required|min:0|gte:0',
         ]);
 
         $ayam = Ayam::find($id);

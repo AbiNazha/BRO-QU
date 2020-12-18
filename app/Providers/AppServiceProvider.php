@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Blade;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -36,5 +37,10 @@ class AppServiceProvider extends ServiceProvider
         //   Validator::replacer('greater_than_field', function($message, $attribute, $rule, $parameters) {
         //     return str_replace(':field', $parameters[0], $message);
         //   });
+
+        Blade::directive('currency', function ($expression) {
+            return "Rp <?php echo number_format($expression, 0, ',', '.'); ?>";
+        });
+
     }
 }
