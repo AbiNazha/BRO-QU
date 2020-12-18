@@ -28,9 +28,11 @@
                         <input id="searchbox" class="form-control mr-sm-2" type="text" placeholder="Pencarian">
                     </ul>
                     <ul class="navbar-nav ml-auto">
+                        @if(Auth::user()->jabatan == 'Pengelola')
                         <li class="nav-item pr-3 border-right">
                             <a class="nav-link" href="{{ route('tambahdatatransaksi')}}" style="color: grey;">Tambah Data</a>
                         </li>
+                        @endif
                         {{-- <li class="nav-item pl-3">
                             <a class="nav-link" href="#" style="color: grey;">Unduh</a>
                         </li> --}}

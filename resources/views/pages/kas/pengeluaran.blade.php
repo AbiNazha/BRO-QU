@@ -52,15 +52,22 @@
                       </tr>
                     </thead>
                     <tbody>
+                        <?php $i=1; ?>
                         @foreach ($pengeluaran as $d => $data)
                             <tr>
-                                <th scope="col">{{$data->id}}</th>
+                                <th scope="col">{{$i}}</th>
                                 <th scope="col">{{$data->tanggal}}</th>
-                                <th scope="col">{{$data->nominal}}</th>
+                                <th scope="col">@currency($data->nominal)</th>
                                 <th scope="col">{{$data->keterangan}}</th>
                                 <th scope="col">{{$data->status}}</th>
-                            <th scope="col"><a class="text-decoration-none" href="pengeluaran/edit/{{$data->id}}" style="color: grey;">Edit</a></th>
+                                @if(Auth::user()->jabatan == 'Pemilik')
+                                <th scope="col">
+                                    {{-- <a class="text-decoration-none" href="pengeluaran/edit/{{$data->id}}" style="color: grey;">Edit</a> --}}
+                                    <a class="text-decoration-none" href="pengeluaran/verifikasi/{{$data->id}}" style="color: grey;">Verifikasi</a>
+                                </th>
+                                @endif
                             </tr>
+                            <?php $i++ ?>
                         @endforeach
                     </tbody>
                 </table>

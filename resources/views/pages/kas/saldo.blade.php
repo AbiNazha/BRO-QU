@@ -17,6 +17,26 @@
             <div class="card-title text-center mt-2 mb-4">
                 <h2 class="font-weight-bold ">SALDO</h2>
             </div>
+            <div class="row mb-3">
+                <div class="col-4"> 
+                  <div class="card ">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <div class="media d-flex">
+                          <div class="align-self-center">
+                            <h4>Sisa Saldo</h4>                            
+                          </div>
+                          <div class="media-body text-right">
+                          <h3>
+                            @currency($total)
+                          </h3>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             @if (session()->has('message'))
             <div class="alert alert-success" role="alert">
                 {{ session()->get('message')}}
@@ -26,14 +46,6 @@
                 <div class="navbar navbar-expand-sm">
                     <ul class="navbar-nav float-sm-left" >
                         <input id="searchbox" class="form-control mr-sm-2" type="text" placeholder="Pencarian">
-                    </ul>
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item pr-3 border-right">
-                            <a class="nav-link" href="{{ route('tambahdata')}}" style="color: grey;">Tambah Data</a>
-                        </li>
-                        {{-- <li class="nav-item pl-3">
-                            <a id="excel" class="nav-link" href="#" style="color: grey;">Unduh</a>
-                        </li> --}}
                     </ul>
                 </div>
                 <div class="container-fluid">
@@ -53,8 +65,8 @@
                             <tr>
                                 <th scope="col">{{$i}}</th>
                                 <th scope="col">{{$data->tanggal}}</th>
-                                <th scope="col">{{$data->pemasukan}}</th>
-                                <th scope="col">{{$data->pengeluaran}}</th>
+                                <th scope="col">@currency($data->pemasukan)</th>
+                                <th scope="col">@currency($data->pengeluaran)</th>
                             </tr>
                             <?php $i++ ?>
                         @endforeach
