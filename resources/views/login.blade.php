@@ -31,22 +31,21 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group mb-4">
-                            <input type="username" name="login"  class="form-control border-0 @error('username') is-invalid @enderror"  id="username" value="{{ old('username') }}" placeholder="Username atau Email" style="background-color: #f8f8f8;" required>
-                            
-                            @error('username')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>Data yang anda masukkan salah</strong>
-                                </span>
-                            @enderror
+                            <input type="username" name="username"  class="form-control border-0 {{ $errors->has('username') ? 'is-invalid' : ''}}"  id="username" value="{{ old('username') }}" placeholder="Username atau Email" style="background-color: #f8f8f8;">
+                            @if ($errors->has('username'))
+                                <div class="invalid-feedback">
+                                    {{$errors->first('username')}}
+                                </div>
+                            @endif
                         </div>
                         <div class="form-group mb-4">
-                            <input type="password" name="password" class="form-control border-0 @error('password') is-invalid @enderror" id="password"  placeholder="Password" style="background-color: #f8f8f8;" required>
+                            <input type="password" name="password" class="form-control border-0 {{ $errors->has('password') ? 'is-invalid' : ''}}" id="password"  placeholder="Password" style="background-color: #f8f8f8;">
                             
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>Data yang anda masukkan salah</strong>
-                                </span>
-                            @enderror
+                            @if ($errors->has('password'))
+                                <div class="invalid-feedback">
+                                    {{$errors->first('password')}}
+                                </div>
+                            @endif
                         </div>
                         {{-- <div class="form-group form-check mb-3">
                             <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
