@@ -31,7 +31,7 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group mb-4">
-                            <input type="username" name="username"  class="form-control border-0 {{ $errors->has('username') ? 'is-invalid' : ''}}"  id="username" value="{{ old('username') }}" placeholder="Username atau Email" style="background-color: #f8f8f8;">
+                            <input type="username" name="login"  class="form-control border-0 {{ $errors->has('username') ? 'is-invalid' : ''}}"  id="email" value="{{ old('email') }}" placeholder="Username atau Email" style="background-color: #f8f8f8;">
                             @if ($errors->has('username'))
                                 <div class="invalid-feedback">
                                     {{$errors->first('username')}}
