@@ -80,6 +80,9 @@ Route::group(['middleware' => ['auth', 'cekjabatan:Pemilik,Pengelola']], functio
     Route::get('pengeluaran', 'Kas\KasController@pengeluaran')->name('pengeluaran');
     Route::get('pengeluaran/tambahdata', 'Kas\TambahDataPengeluaranController@index')->name('tambahdatapengeluaran');
     Route::post('pengeluaran/tambahdata', 'Kas\TambahDataPengeluaranController@store')->name('postdatapengeluaran');
+    Route::get('pengeluaran/verifikasi/{id}', 'Kas\TambahDataPengeluaranController@show');
+    Route::get('pengeluaran/verifikasi/{id}/tolak', 'Kas\TambahDataPengeluaranController@edit');
+    Route::get('pengeluaran/verifikasi/{id}/terima', 'Kas\TambahDataPengeluaranController@update');
 });
 
 Route::group(['middleware' => ['auth', 'cekjabatan:Pemilik,Pengawas']], function () {

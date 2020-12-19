@@ -47,12 +47,14 @@
                       </tr>
                     </thead>
                     <tbody>
+                        <?php $i=1; ?>
                         @foreach ($pemasukan as $d => $data)
                             <tr>
-                                <th scope="col">{{$data->id}}</th>
+                                <th scope="col">{{$i}}</th>
                                 <th scope="col">{{$data->tanggal}}</th>
-                                <th scope="col">{{$data->total_pemasukan}}</th>
+                                <th scope="col">@currency($data->total_pemasukan)</th>
                             </tr>
+                            <?php $i++ ?>
                         @endforeach
                     </tbody>
                 </table>

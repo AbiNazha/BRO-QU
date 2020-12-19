@@ -70,7 +70,9 @@ class TambahDataPengeluaranController extends Controller
      */
     public function show($id)
     {
-        //
+        $pengeluaran = Kas::findOrFail($id);
+
+        return view('pages.kas.verifikasi')->with('pengeluaran', $pengeluaran);
     }
 
     /**
@@ -81,7 +83,13 @@ class TambahDataPengeluaranController extends Controller
      */
     public function edit($id)
     {
-        //
+        $kas = Kas::find($id);
+        $user = Auth::user()->id;
+        $kas->id_petugas = $user;
+        $kas->status = 'Ditolak';
+        $kas->update();
+
+        return redirect('pengeluaran')->with('message', 'Data berhasil diubah');
     }
 
     /**
@@ -93,7 +101,13 @@ class TambahDataPengeluaranController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $kas = Kas::find($id);
+        $user = Auth::user()->id;
+        $kas->id_petugas = $user;
+        $kas->status = 'Disetujui';
+        $kas->update();
+
+        return redirect('pengeluaran')->with('message', 'Data berhasil diubah');
     }
 
     /**

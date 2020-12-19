@@ -21,9 +21,12 @@ class KasController extends Controller
                 ->groupBy('tanggal')
                 ->get();
 
-        // dd($saldo);
+        $total = 0;
+        foreach ($saldo as $d => $data){
+            $total += $data->pemasukan - $data->pengeluaran;
+        }
     
-        return view('pages.kas.saldo', ['saldo' => $saldo]);
+        return view('pages.kas.saldo', ['saldo' => $saldo, 'total' => $total]);
     }
 
     public function pemasukan()
