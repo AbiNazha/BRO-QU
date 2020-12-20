@@ -19,9 +19,9 @@ class CreateTransaksipenjualanTable extends Migration
             $table->foreign('id_petugas')->references('id')->on('datapetugas');
             $table->date('tanggal');
             $table->string('jenis', 20);
-            $table->integer('jumlah')->lenght(30)->unsigned();
-            $table->integer('nominal')->lenght(30)->unsigned();
-            $table->integer('total_penjualan')->lenght(30)->unsigned();
+            $table->biginteger('jumlah')->lenght(30)->unsigned();
+            $table->biginteger('nominal')->lenght(30)->unsigned();
+            $table->biginteger('total_penjualan')->lenght(30)->unsigned();
         });
     }
 
