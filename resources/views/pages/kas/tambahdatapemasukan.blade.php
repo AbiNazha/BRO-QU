@@ -53,6 +53,17 @@
                             @endif
                         </div>
                     </div>
+                    <div class="form-group row ml-3 mr-3">
+                        <label for="KeteranganPemasukan" class="col-sm-3 col-form-label col-form-label-sm">Keterangan</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="keterangan_pemasukan" value="" class="form-control form-control-sm {{ $errors->has('keterangan_pemasukan') ? 'is-invalid' : ''}}" id="KeteranganPemasukan" placeholder="">
+                            @if ($errors->has('keterangan_pemasukan'))
+                                <div class="invalid-feedback">
+                                    {{$errors->first('keterangan_pemasukan')}}
+                                </div>
+                            @endif
+                        </div>
+                    </div>
                     <div class="col text-center mt-4 mb-3">
                         <a type="reset" class="justify-content-center btn mb-2 btn-outline-dark mr-2 pr-4 pl-4" href="{{ route('pemasukan')}}">Batal</a>
                         <button type="submit" class="justify-content-center btn mb-2 btn-outline-dark ml-2 pr-3 pl-3">Simpan</button>

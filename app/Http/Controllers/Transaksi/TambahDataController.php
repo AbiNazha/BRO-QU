@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Transaksi;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Kas;
 use App\Transaksi;
 use Auth;
+use DB;
 
 class TambahDataController extends Controller
 {
@@ -41,17 +43,36 @@ class TambahDataController extends Controller
             'jenis' => 'required',
             'jumlah' => 'required',
             'harga_satuan' => 'required',
+            'tanggal' => 'required',
         ]);
 
         $user = Auth::user()->id;
+        $tran = Transaksi::all()->last();
 
         Transaksi::create([
             'id_petugas' => $user,
+            'tanggal' => $request->tanggal,
             'jenis' => $request->jenis,
             'jumlah' => $request->jumlah,
             'nominal' => $request->harga_satuan,
             'total_penjualan' => $request->jumlah * $request->harga_satuan,
         ]);
+
+        if ($tran != null) {
+            $transaksi = $tran->id + 1;
+        } else {
+            $transaksi = 1;
+        };
+
+        Kas::create([
+            'id_petugas' => $user,            
+            'id_transaksi' => $transaksi,
+            'tanggal' => $request->tanggal,
+            'total_pemasukan' => $request->jumlah * $request->harga_satuan,
+            'keterangan_pemasukan' => $request->jenis,
+            'status' => 'Disetujui'
+        ]);
+
             return redirect('transaksi')->with('message', 'Data Berhasil Ditambahkan');
     }
 
@@ -74,7 +95,9 @@ class TambahDataController extends Controller
      */
     public function edit($id)
     {
-        //
+        $transaksi = Transaksi::findOrFail($id);
+
+        return view('pages.transaksi.editdata')->with('transaksi', $transaksi);
     }
 
     /**
@@ -86,7 +109,28 @@ class TambahDataController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'jenis' => 'required',
+            'jumlah' => 'required',
+            'harga_satuan' => 'required',
+        ]);
+
+        $transaksi = Transaksi::find($id);
+        $user = Auth::user()->id;
+        $transaksi->id_petugas = $user;
+        $transaksi->jenis = $request->input('jenis');
+        $transaksi->jumlah = $request->input('jumlah');
+        $transaksi->nominal = $request->input('harga_satuan');
+        $transaksi->total_penjualan = $request->input('jumlah') * $request->input('harga_satuan');
+        $transaksi->update();
+
+
+        $pemasukan = Kas::where('id_transaksi', $id)->firstOrFail();
+        $pemasukan->total_pemasukan = $request->input('jumlah') * $request->input('harga_satuan');
+        $pemasukan->keterangan_pemasukan = $request->input('jenis');
+        $pemasukan->update();
+
+        return redirect('transaksi')->with('message', 'Data berhasil diubah');
     }
 
     /**

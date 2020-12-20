@@ -49,6 +49,9 @@
                         <th scope="col">Jumlah</th>
                         <th scope="col">Harga Satuan</th>
                         <th scope="col">Total Penjualan</th>
+                        @if (Auth::User()->jabatan == "Pengelola" )
+                        <th scope="col">Action</th>
+                        @endif
                       </tr>
                     </thead>
                     <tbody>
@@ -60,7 +63,9 @@
                                 <th scope="col">{{$data->jumlah}}</th>
                                 <th scope="col">@currency($data->nominal)</th>
                                 <th scope="col">@currency($data->total_penjualan)</th>
-                            {{-- <th scope="col"><a class="text-decoration-none" href="transaksi/edit/{{$data->id}}" style="color: grey;">Edit</a></th> --}}
+                                @if (Auth::User()->jabatan == "Pengelola" )
+                                <th scope="col"><a class="text-decoration-none" href="transaksi/edit/{{$data->id}}" style="color: grey;">Edit</a></th>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>

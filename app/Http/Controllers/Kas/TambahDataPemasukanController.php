@@ -40,6 +40,7 @@ class TambahDataPemasukanController extends Controller
         $this->validate($request, [
             'tanggal' => 'required',
             'jumlah_pemasukan' => 'required',
+            'keterangan_pemasukan' => 'required',
         ]);
 
         $user = Auth::user()->id;
@@ -48,6 +49,7 @@ class TambahDataPemasukanController extends Controller
             'id_petugas' => $user,
             'tanggal' => $request->tanggal,
             'total_pemasukan' => $request->jumlah_pemasukan,
+            'keterangan_pemasukan' => $request->keterangan_pemasukan,
             'status' => 'Disetujui'
         ]);
             return redirect('pemasukan')->with('message', 'Data Berhasil Ditambahkan');

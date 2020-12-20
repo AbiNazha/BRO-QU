@@ -58,7 +58,7 @@
                     </div>
 
                     <div class="col text-center mt-4 mb-3">
-                        <a type="reset" class="justify-content-center btn mb-2 btn-outline-dark mr-2 pr-4 pl-4" href="{{ route('petugas')}}">Batal</a>
+                        <a type="reset" class="justify-content-center btn mb-2 btn-outline-dark mr-2 pr-4 pl-4" href="{{ route('kandang')}}">Batal</a>
                         <button type="submit" class="justify-content-center btn mb-2 btn-outline-dark ml-2 pr-3 pl-3">Simpan</button>
                     </div>
                 </form>

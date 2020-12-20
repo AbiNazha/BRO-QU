@@ -44,6 +44,7 @@
                         <th scope="col">No</th>
                         <th scope="col">Tanggal</th>
                         <th scope="col">Total Pemasukan</th>
+                        <th scope="col">Keterangan</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -52,7 +53,8 @@
                             <tr>
                                 <th scope="col">{{$i}}</th>
                                 <th scope="col">{{$data->tanggal}}</th>
-                                <th scope="col">@currency($data->total_pemasukan)</th>
+                                <th scope="col">@currency($data->pemasukan)</th>
+                                <th scope="col">{{$data->keterangan_pemasukan}}</th>
                             </tr>
                             <?php $i++ ?>
                         @endforeach
