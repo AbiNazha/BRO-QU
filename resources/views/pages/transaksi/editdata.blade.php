@@ -26,12 +26,13 @@
                         {{ session()->get('message')}}
                     </div>
                 @endif
-                <form method="POST" action="{{ route('postdatatransaksi')}}">
+                <form method="POST" action="data-update/{{ $transaksi->id }}">
                     @csrf
+                    @method('PUT')
                     <div class="form-group row ml-3 mr-3">
                         <label for="Tanggal" class="col-sm-3 col-form-label col-form-label-sm">Tanggal</label>
                         <div class="col-sm-9">
-                          <input class="form-control form-control-sm {{ $errors->has('tanggal') ? 'is-invalid' : ''}}" name="tanggal" type="date" value="" id="Tanggal">
+                          <input class="form-control form-control-sm {{ $errors->has('tanggal') ? 'is-invalid' : ''}}" name="tanggal" type="date" value="{{ $transaksi->tanggal}}" id="Tanggal">
                             @if ($errors->has('tanggal'))
                                 <div class="invalid-feedback">
                                     {{$errors->first('tanggal')}}
@@ -43,8 +44,13 @@
                         <label for="Jenis" class="col-sm-3 col-form-label col-form-label-sm">Jenis</label>
                         <div class="col-sm my-0">
                             <select class="custom-select mr-sm-2 {{ $errors->has('jenis') ? 'is-invalid' : ''}}" name="jenis" id="Jenis">
-                                    <option value="Telur">Telur</option>
-                                    <option value="Ayam">Ayam</option>
+                                    @if ($transaksi->jenis == "Telur")
+                                        <option selected value="Telur">Telur</option>
+                                        <option value="Ayam">Ayam</option>
+                                        @elseif ($transaksi->jenis == "Ayam")
+                                            <option value="Telur">Telur</option>
+                                            <option selected value="Ayam">Ayam</option>
+                                    @endif
                             </select>
                             @if ($errors->has('jenis'))
                                 <div class="invalid-feedback">
@@ -56,7 +62,7 @@
                     <div class="form-group row ml-3 mr-3">
                         <label for="Jumlah" class="col-sm-3 col-form-label col-form-label-sm">Jumlah</label>
                         <div class="input-group input-group-sm col-sm-9">
-                            <input type="number" name="jumlah" value="" class="form-control form-control-sm {{ $errors->has('jumlah') ? 'is-invalid' : ''}}" id="Jumlah" placeholder="">
+                            <input type="number" name="jumlah" value="{{ $transaksi->jumlah}}" class="form-control form-control-sm {{ $errors->has('jumlah') ? 'is-invalid' : ''}}" id="Jumlah" placeholder="">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">KG/EKOR</div>
                             </div>  
@@ -73,7 +79,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text">Rp</div>
                             </div>  
-                            <input type="number" name="harga_satuan" value="" class="form-control form-control-sm {{ $errors->has('harga_satuan') ? 'is-invalid' : ''}}" id="HargaSatuan" placeholder="">
+                            <input type="number" name="harga_satuan" value="{{ $transaksi->nominal}}" class="form-control form-control-sm {{ $errors->has('harga_satuan') ? 'is-invalid' : ''}}" id="HargaSatuan" placeholder="">
                             @if ($errors->has('harga_satuan'))
                                 <div class="invalid-feedback">
                                     {{$errors->first('harga_satuan')}}

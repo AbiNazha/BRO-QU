@@ -12,7 +12,7 @@ class Kas extends Model
      * @var array
      */
     protected $fillable = [
-        'id_petugas', 'tanggal', 'total_pemasukan', 'bukti', 'nominal', 'keterangan', 'status',
+        'id_petugas', 'id_transaksi', 'tanggal', 'total_pemasukan', 'bukti', 'nominal', 'keterangan_pemasukan', 'keterangan', 'status',
     ];
 
     protected $attributes = [
@@ -20,6 +20,7 @@ class Kas extends Model
         'nominal' => 0,
         'bukti' => '',
         'keterangan' => '',
+        'keterangan_pemasukan' => '',
      ];
 
     protected $table = 'datakas';

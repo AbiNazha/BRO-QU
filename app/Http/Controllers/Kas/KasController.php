@@ -32,8 +32,14 @@ class KasController extends Controller
     public function pemasukan()
     {
         $pemasukan = DB::table('datakas')
-                    ->where('total_pemasukan', '!=', 0)
+                    ->select(DB::raw('tanggal, keterangan_pemasukan, sum(total_pemasukan) as pemasukan'))
+                    ->groupBy('tanggal', 'keterangan_pemasukan')
+                    ->where('total_pemasukan', '!=', 0 )
                     ->get();
+        // $transaksi = DB::table('transaksipenjualan')
+        //             ->select(DB::raw('tanggal, jenis, sum(total_penjualan) as penjualan'))
+        //             ->groupBy('tanggal', 'jenis')
+        //             ->get();
     
         return view('pages.kas.pemasukan', ['pemasukan' => $pemasukan]);
     }

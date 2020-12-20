@@ -17,7 +17,7 @@ class CreateTransaksipenjualanTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_petugas');
             $table->foreign('id_petugas')->references('id')->on('datapetugas');
-            $table->date('tanggal')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->date('tanggal');
             $table->string('jenis', 20);
             $table->integer('jumlah')->lenght(30)->unsigned();
             $table->integer('nominal')->lenght(30)->unsigned();

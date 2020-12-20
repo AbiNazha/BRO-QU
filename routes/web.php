@@ -67,6 +67,9 @@ Route::group(['middleware' => ['auth', 'cekjabatan:Pengawas']], function () {
 Route::group(['middleware' => ['auth', 'cekjabatan:Pengelola']], function () {
     Route::get('transaksi/tambahdata', 'Transaksi\TambahDataController@index')->name('tambahdatatransaksi');
     Route::post('transaksi/tambahdata', 'Transaksi\TambahDataController@store')->name('postdatatransaksi');
+
+    Route::get('transaksi/edit/{id}', 'Transaksi\TambahDataController@edit');
+    Route::put('transaksi/edit/data-update/{id}', 'Transaksi\TambahDataController@update');
 });
 
 Route::group(['middleware' => ['auth', 'cekjabatan:Pemilik,Pengelola']], function () {
