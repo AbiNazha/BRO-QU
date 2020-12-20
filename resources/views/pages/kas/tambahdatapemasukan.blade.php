@@ -45,7 +45,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text">Rp</div>
                             </div>  
-                            <input type="number" min='0' name="jumlah_pemasukan" value="" class="form-control form-control-sm {{ $errors->has('jumlah_pemasukan') ? 'is-invalid' : ''}}" id="JumlahPemasukan" placeholder="">
+                            <input type="number" name="jumlah_pemasukan" value="" class="form-control form-control-sm {{ $errors->has('jumlah_pemasukan') ? 'is-invalid' : ''}}" id="JumlahPemasukan" placeholder="">
                             @if ($errors->has('jumlah_pemasukan'))
                                 <div class="invalid-feedback">
                                     {{$errors->first('jumlah_pemasukan')}}

@@ -19,7 +19,7 @@
         <div class="col-5 m-auto " style="top: 10vh;">
             <div class="card-body border rounded-lg" style="background-color: white;">
                 <div class="card-title text-center mt-2 mb-4">
-                    <h4 class="font-weight-bold border-bottom pb-4">INPUT DATA TRANSAKSI</h4>
+                    <h4 class="font-weight-bold border-bottom pb-4">EDIT DATA TRANSAKSI</h4>
                 </div>
                 @if (session()->has('message'))
                     <div class="alert alert-success" role="alert">

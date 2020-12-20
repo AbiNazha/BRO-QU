@@ -39,7 +39,7 @@ class TambahDataPengeluaranController extends Controller
     {
         $this->validate($request, [
             'tanggal' => 'required',
-            'jumlah_pengeluaran' => 'required',
+            'jumlah_pengeluaran' => 'required|min:0|gte:0',
             'keterangan' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);

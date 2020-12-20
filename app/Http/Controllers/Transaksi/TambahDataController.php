@@ -41,8 +41,8 @@ class TambahDataController extends Controller
     {
         $this->validate($request, [
             'jenis' => 'required',
-            'jumlah' => 'required',
-            'harga_satuan' => 'required',
+            'jumlah' => 'required|min:0|gte:0',
+            'harga_satuan' => 'required|min:0|gte:0',
             'tanggal' => 'required',
         ]);
 
@@ -111,14 +111,16 @@ class TambahDataController extends Controller
     {
         $this->validate($request, [
             'jenis' => 'required',
-            'jumlah' => 'required',
-            'harga_satuan' => 'required',
+            'jumlah' => 'required|min:0|gte:0',
+            'harga_satuan' => 'required|min:0|gte:0',
+            'tanggal' => 'required',
         ]);
 
         $transaksi = Transaksi::find($id);
         $user = Auth::user()->id;
         $transaksi->id_petugas = $user;
         $transaksi->jenis = $request->input('jenis');
+        $transaksi->tanggal = $request->input('tanggal');
         $transaksi->jumlah = $request->input('jumlah');
         $transaksi->nominal = $request->input('harga_satuan');
         $transaksi->total_penjualan = $request->input('jumlah') * $request->input('harga_satuan');
@@ -128,6 +130,7 @@ class TambahDataController extends Controller
         $pemasukan = Kas::where('id_transaksi', $id)->firstOrFail();
         $pemasukan->total_pemasukan = $request->input('jumlah') * $request->input('harga_satuan');
         $pemasukan->keterangan_pemasukan = $request->input('jenis');
+        $pemasukan->tanggal = $request->input('tanggal');
         $pemasukan->update();
 
         return redirect('transaksi')->with('message', 'Data berhasil diubah');

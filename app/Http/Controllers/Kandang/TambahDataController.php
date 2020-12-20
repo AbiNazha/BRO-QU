@@ -41,7 +41,7 @@ class TambahDataController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'usia_ayam' => 'required|max:20',
+            'usia_ayam' => 'required|max:20|min:0|gte:0',
         ]);
 
         $user = Auth::user()->id;
@@ -88,6 +88,10 @@ class TambahDataController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'usia_ayam' => 'required|max:20|min:0|gte:0',
+        ]);
+
         $kandang = Kandang::find($id);
         $user = Auth::user()->id;
         $kandang->id_petugas = $user;

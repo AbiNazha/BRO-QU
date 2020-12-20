@@ -39,7 +39,7 @@ class TambahDataPemasukanController extends Controller
     {
         $this->validate($request, [
             'tanggal' => 'required',
-            'jumlah_pemasukan' => 'required',
+            'jumlah_pemasukan' => 'required|min:0|gte:0',
             'keterangan_pemasukan' => 'required',
         ]);
 

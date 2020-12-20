@@ -38,9 +38,9 @@ class TambahDataController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'konsentrat' => 'required',
-            'jagung' => 'required',
-            'dedek' => 'required',
+            'konsentrat' => 'required|min:0|gte:0',
+            'jagung' => 'required|min:0|gte:0',
+            'dedek' => 'required|min:0|gte:0',
             'status' => 'required',
         ]);
 
@@ -89,6 +89,13 @@ class TambahDataController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'konsentrat' => 'required|min:0|gte:0',
+            'jagung' => 'required|min:0|gte:0',
+            'dedek' => 'required|min:0|gte:0',
+            'status' => 'required',
+        ]);
+
         $pakan = Pakan::find($id);
         $user = Auth::user()->id;
         $pakan->id_petugas = $user;
